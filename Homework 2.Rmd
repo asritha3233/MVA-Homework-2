@@ -1,0 +1,84 @@
+---
+title: "HW-2"
+author: "Naga Asritha"
+date: "2023-02-13"
+output: html_document
+---
+
+```{r }
+library(readr)
+Bumpus_sparrows = read_csv("/Users/asrithanarra/Desktop/Bumpus_sparrows.csv")
+Bumpus_sparrows
+spar = Bumpus_sparrows
+spar
+
+library(lattice)
+library(ggplot2)
+library(ggridges)
+library(ggvis)
+library(ggthemes)
+library(cowplot)
+library(gapminder)
+library(gganimate)
+library(dplyr)
+library(tidyverse)
+library(grid)
+library(gridExtra)
+library(RColorBrewer)
+ggplot(spar, aes(x=Total_length,y=L_humerous)) + geom_point()
+
+ggplot(spar, aes(x=L_humerous,y=Alar_extent)) + facet_wrap(~Survivorship) + geom_point()
+
+ggplot(spar, aes(x=Total_length, y=L_beak_head)) +geom_point(aes(color=Total_length))
+
+ggplot(spar, aes(x=Total_length,y=L_humerous)) + xlim(150,170) + geom_point(colour="Yellow", pch=3) + 
+  labs(x="Length of the sparrow", y="Length of humerous of sparrows", title="Bumpus Sparrow ") 
+
+
+ggplot(spar, aes(L_humerous)) + geom_bar(position="stack") 
+ggplot(spar, aes(Total_length) )+ geom_bar(position="stack") 
+ggplot(spar, aes(L_beak_head)) + facet_grid(.~Survivorship) + geom_bar(position="dodge")
+ggplot(spar, aes(x=L_keel_sternum, fill=Survivorship)) + geom_bar()+theme_bw()
+
+
+ggplot(spar, aes(L_humerous))+geom_histogram(bins=10)
+ggplot(spar, aes(L_humerous))+geom_histogram(aes(fill = after_stat(count)))
+
+
+ggplot(spar, aes(x=Total_length, y=L_beak_head)) + geom_point() + geom_smooth(method=lm)
+ggplot(spar, aes(x=Total_length, y=Alar_extent)) + geom_point() + stat_smooth()
+ggplot(spar, aes(x=Total_length, y=L_humerous)) + geom_point() + stat_smooth()
+
+
+ggplot(spar, aes(x=Survivorship, y=L_humerous)) + geom_violin()
+ggplot(spar, aes(x=Survivorship, y=L_keel_sternum)) + geom_violin()
+ggplot(spar, aes(x=Survivorship, y=L_beak_head)) + geom_violin()
+
+
+ggplot(spar, aes(x=Survivorship, y=L_humerous)) + geom_boxplot()
+ggplot(spar, aes(x=Survivorship, y=L_humerous)) + geom_boxplot() + coord_flip()
+
+
+ggplot(spar, aes(x=Total_length)) + geom_density() 
+ggplot(spar, aes(x=Total_length, fill=Survivorship, color=Survivorship)) + geom_density() 
+ggplot(spar, aes(x=Total_length, fill=Survivorship, color=Survivorship)) + geom_density(alpha=0.3, aes(y=..scaled..)) 
+
+ggplot(spar, aes(x=L_beak_head, y=Survivorship)) + geom_density_ridges() 
+ggplot(spar, aes(x=Alar_extent)) + geom_density() 
+ggplot(spar, aes(x=L_humerous, y=Survivorship)) + geom_density_ridges() 
+
+ggplot(spar, aes(x=L_humerous, y=Total_length)) + geom_hex() 
+
+lastplot <- ggplot(spar, aes(x=Total_length,y=Alar_extent)) + xlim(150,170) + geom_point(aes(color=Survivorship)) + stat_smooth() + 
+  labs(x="Total Length of Sparrow", y="Length humerous", title="Bumpus Sparrows") 
+
+lastplot + theme_bw()
+lastplot + theme_cowplot()
+lastplot + theme_dark()
+lastplot + theme_economist()
+lastplot + theme_fivethirtyeight()
+lastplot + theme_tufte()
+lastplot + theme_wsj()
+
+```
+
